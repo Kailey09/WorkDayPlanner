@@ -1,12 +1,12 @@
-// localStorage.setItem("myKey", "myValue")
-
-// alert(localStorage.getItem("myKey"))
 
 var currentTime = document.getElementById("currentDay");
 var day = moment();
 
 
+
+
 currentTime.textContent = day.format('MMMM Do YYYY, h:mm:ss a');
+
 
 function clickHandler(event) {
     // console.log(event.target.previousElementSibling.value);
@@ -18,8 +18,11 @@ function clickHandler(event) {
     localStorage.setItem(key, value);
 }
 
- var buttons = document.querySelectorAll("button");
+ 
+var buttons = document.querySelectorAll("button");
  console.log(buttons);
+
+
  for(var i =0; i < buttons.length; i++) {
      buttons[i].addEventListener("click", clickHandler );
  }
@@ -30,19 +33,18 @@ function clickHandler(event) {
      var savedText = localStorage.getItem(savedKey)
      textAreas[i].value = savedText;
 
+     var time = moment().format('LT');
+
 
      // load color
-     if(color) {
-        textAreas[i].classList.add("present")
+     if (moment().isAfter(time)) {
+        textAreas[i].classList.add("past")
 
-     } else if(color) {
+     } else if(moment().isBefore(time)) {
         textAreas[i].classList.add("future")
 
      } else {
-        textAreas[i].classList.add("past")
+        textAreas[i].classList.add("present")
 
      }
-
- }
-
- 
+    };
